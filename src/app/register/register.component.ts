@@ -10,7 +10,6 @@ export class RegisterComponent implements OnInit {
 
   private model: any = {};
 
-  @Input() valuesFromHome: any;
   @Output() cancelRegister = new EventEmitter();
 
   constructor(private authService: AuthService) {
