@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {User} from '../_models/User';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -10,20 +10,16 @@ import {environment} from '../../environments/environment';
 export class UserService {
 
   private baseUrl: string = environment.apiUrl + 'users/';
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    })
-  };
+
 
   constructor(private http: HttpClient) {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl, this.httpOptions);
+    return this.http.get<User[]>(this.baseUrl);
   }
 
   getUser(id): Observable<User> {
-    return this.http.get<User>(this.baseUrl + id, this.httpOptions);
+    return this.http.get<User>(this.baseUrl + id);
   }
 }
